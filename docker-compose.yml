@@ -1,0 +1,9 @@
+version: '2'
+services:
+    ansible:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      container_name: ansible
+      volumes:
+        - "./public:/public"
