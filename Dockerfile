@@ -1,15 +1,9 @@
-FROM debian
+FROM debian:9.3
 
 MAINTAINER Wilton Guilherme - TBF HOST <wiltoninfra@gmail.com>
  
 RUN mkdir /public && chmod -R 777 /public 
  
-RUN apt-get update
-
-RUN apt-get install software-properties-common -y
-
-RUN apt-add-repository ppa:ansible/ansible
-
 RUN apt-get update && apt-get install -y \	
 	curl 		\
 	dnsutils 	\ 
@@ -21,6 +15,12 @@ RUN apt-get update && apt-get install -y \
 	vim		\
 	cron	\
 	openssh-server \
-	make 
+	make  \
+	nmap \
+	python-pip
+	
+RUN pip install ansible
+	
+RUN apt-get upgrade -y	
 
 CMD sleep 86400
